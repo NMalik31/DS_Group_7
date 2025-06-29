@@ -1,0 +1,235 @@
+---
+title: |
+  <div style="text-align: center;">
+   GameScape: Data Scraping and Analysis of the Top 250 E-Games using R
+    <br><span style="font-size: 24px;">MTH208 - Data Science Lab - I
+    <br>Instructor: Dr. Dootika Vats</span>
+    <br><span style="font-size: 18px;">Group 7: Mainak Sarkar, Neelaksha Malik, Tenzin Tsomu, Harsh Deep</span>
+  </div>
+output: html_document
+---
+
+<br>
+
+::: {style="text-align: center; font-size: 28px;"}
+Acknowledgement
+:::
+
+We would like to extend our heartfelt thanks to Professor Dootika Vats for her invaluable guidance and support throughout the development of our GameScape Data Analysis project. Her expert feedback, encouragement, and dedication have played a crucial role in the success of this project. We are deeply grateful for her patience and commitment in helping us overcome the challenges we encountered along the way.
+
+## 1. Introduction
+
+### 1.1 About E games
+
+E-games, or electronic games, refer to video games played on digital platforms such as consoles, PCs, and mobile devices. With the rise of internet connectivity and gaming technology, e-games have grown into a major global industry, attracting millions of players and viewers worldwide.
+
+Key features of e-games include:
+
+-   **Variety of Game Genres::**E-games encompass a wide range of genres, including action, adventure, sports, strategy, and role-playing. These games cater to diverse audiences and offer unique experiences that appeal to both casual and competitive gamers.
+
+-   **Online Multiplayer Platforms::** Many e-games allow players to connect and compete with others through online multiplayer modes. This fosters a sense of community and provides opportunities for players to engage in both casual and professional-level competition.
+
+-   **Esports Competitions::** Esports, or competitive gaming, has emerged as a major industry within the world of e-games. Professional players and teams compete in organized tournaments for significant cash prizes, drawing large audiences both online and at live events.
+
+-   **Streaming and Content Creation::** Platforms like Twitch, YouTube, and Facebook Gaming have enabled players to stream their gameplay and create content for a global audience. This has given rise to a new generation of content creators, influencers, and esports commentators.
+
+-   **Mobile Gaming Growth::** The advent of smartphones and tablets has led to the rapid expansion of mobile gaming. Games such as PUBG Mobile and Clash of Clans have become massively popular, reaching billions of players around the world.
+
+-   **Virtual Reality (VR)::** and Augmented Reality (AR): The integration of VR and AR technologies into gaming has revolutionized the player experience. These technologies create immersive environments, making e-games more interactive and realistic than ever before.
+
+E-games have revolutionized the entertainment landscape, offering new forms of competition, creativity, and community building. As the industry continues to evolve, e-games are expected to become an even more integral part of global culture, with expanding opportunities in both recreational and professional sectors.
+
+### 1.2 Objective
+
+The primary objective of this project is to develop an interactive Shiny app that provides a comprehensive analysis of the top 250 highest-rated games on Steam. Users can explore and filter games based on rank, score, release date, and price to discover games that suit their preferences. With detailed game stats, customisable filters, and engaging visual insights, the app offers a personalized experience for exploring, comparing, and saving favorite games
+
+#### 1.2.1 Statistics Analysis:
+
+-   Collect and process comprehensive statistics from Steam’s top 250 games, including data on game price, user ratings, critic reviews, and release dates.
+-   Use data visualization techniques to present these insights, allowing users to easily grasp trends and key metrics..
+
+#### 1.2.2 Filtering Mechanisms:
+
+-   Develop filters enabling users to explore and sort games by criteria such as rank, price, release year, rating scores, and personal favorites.
+-   Provide a user-friendly search interface to refine results according to individual preferences.
+
+#### 1.2.3 Providing Choices:
+
+-   Implement visual comparisons of game scores and ratings using bar charts, histograms, scatter plots, and box plots.
+-   Offer users an interactive, visual approach to comparing games, aiding in decision-making and enhancing the browsing experience.
+
+## 2.1 Scraping and Cleaning the Data
+
+The data for different purposes has been scraped from various sources.
+
+We have scraped the following data:
+
+1.  Rank According To Score of top 250 games according to stream 250
+
+2.  Release Dates of top 250 games according to stream 250
+
+3.  Scores of top 250 games according to stream 250
+
+4.  Audience Rating of top 250 games according to stream 250
+
+5.  Total Votes of top 250 games according to stream 250
+
+6.  Game Price of top 250 games according to stream 250
+
+The raw datasets that we obtained from the respective webpages were not ready-to-use. There were many missing values and there also were some discrepancies in the data. We had to clean the data and also organize the data in a way that is easy to use.
+
+We used the following libraries for doing these tasks:
+
+1.  rvest
+2.  tidyverse
+3.  dplyr
+4.  httr
+
+For example, here is a snippet of code that was used to extract data for for ranking according to scores:
+
+```{r message=FALSE, fig.show='hold'}
+
+library(rvest)
+library(dplyr)
+library(tidyverse)
+library(rvest)
+library(dplyr)
+library(httr)
+
+game_dataset <- read.csv("game_dataset.csv")
+```
+
+## 2.2 Description of our Data
+
+1.  Game Title = Indicating the name of the game
+2.  Rank = Rank based on score of the games
+3.  Release Dates = Date when the game was released in the market
+4.  Scores = Score which is a function of audience reviews and number of reviews
+5.  Audience Rating = Average of the ratings which was given by the audience
+6.  Total Votes = Based on the number of players and streamers who played and reviewed the game
+7.  Game Price = Price of the game during its launch.
+
+## 3. Visualising the Dataset
+
+### 3.1 Libraries we used in this process
+
+-   shiny
+-   DT
+-   dplyr
+-   ggplot2
+-   bslib
+
+### 3.2 Shiny app
+
+The Shiny app developed by our group offers a streamlined and interactive platform for exploring Steam’s top 250 highest-rated games. The app is divided into key tabs for an intuitive user experience:
+
+#### 3.2.1. Overview Tab:
+
+-   Provides a summary of the dataset, displaying key statistics like total games, average scores, and average votes.
+-   Includes a boxplot of game scores, offering users a quick visual overview of the distribution of ratings across all games.
+
+#### 3.2.2. Search and filter tab:
+
+-   Allows users to filter games by various criteria, including release date, score, price, ratings, and title keywords, enabling a targeted search experience.
+-   Features an interactive scatter plot that compares the price and number of votes for the filtered games, helping users visually assess how popularity and price correlate.
+
+#### 3.2.3.Top Games Tab:
+
+-   Displays a list of top games based on user-selected criteria like score and price, allowing users to see which games rank highest according to their preferences
+-   Offers a bar plot view to compare the top games on either score or price, making it easier to identify standout games in each category.
+
+### 3.3 Generating visualisations for "E Games " using our Shiny App
+
+#### 3.3.1 Box plot of ratings of all games
+
+```{R}
+# Load necessary library
+library(ggplot2)
+
+# Convert Score column to numeric if it's not already
+game_dataset$Score <- as.numeric(game_dataset$Score)
+
+# Create a box plot of game ratings (scores)
+ggplot(game_dataset, aes(y = Score)) +
+  geom_boxplot(fill = "steelblue", color = "black") +
+  labs(title = "Box Plot of Game Ratings", y = "Ratings", x = "") +
+  theme_minimal()
+
+
+
+```
+
+-   **Observation:** The box plot represented that maximum percentage of the games have ratings between 8.5 to 8.6 with few outliers having rating 8.8 .
+
+-   **Implication:** This shows that gamers usually don't usually have very extreme opinions about most of the games except few games which really stands out.
+
+-   **Purpose:**.The filtering mechanism helps a new user to filter the games based on his/her preferance and explore all the alternatives and make an informed decision before purchasing a game.
+
+-   **Observation:** In this Point and Segment Plot, as we move from left to right, batsmen's best scores decrease. Different team colors reveal diverse team performances, showcasing individual player contributions.
+
+#### 3.3.4 A Scatter Plot for no. of votes vs. price
+
+```{R}
+# Load necessary library
+library(ggplot2)
+
+# Convert 'Number of Votes' and 'Price' to numeric if they are not already
+game_dataset$Number.of.Votes <- as.numeric(gsub(",", "", game_dataset$Number.of.Votes)) # Remove commas if present
+game_dataset$Price <- as.numeric(gsub("\\$", "", game_dataset$Price)) # Remove dollar signs if present
+
+# Create a scatter plot of Number of Votes vs. Price
+ggplot(game_dataset, aes(x = Price, y = Number.of.Votes)) +
+  geom_point(color = "steelblue", alpha = 0.6) +
+  labs(title = "Scatter Plot of Number of Votes vs. Price", x = "Price ($)", y = "Number of Votes") +
+  theme_minimal()
+
+
+```
+
+-   **Observation:** In the Scatter Plot for number of votes and price of games we can see concentrations of scores in the price range of \$15 to \$25
+
+-   **Implication:** The concentration of high number of votes ar a particular point indicates the purchasing power of the players which implies how much players on the average are ready to pay for games. Also the low number of votes at high price games show that players on the average cannot afford to play very niche games whose price exceeds or equals to \$60
+
+#### 3.3.5 A Bar chart top 10 game titles by price
+
+```{R}
+# Load necessary libraries
+library(ggplot2)
+library(dplyr)
+
+# Filter out games with 'Free' in the Price column, clean the Price column, and convert to numeric
+game_dataset <- game_dataset %>%
+  filter(Price != "Free") %>%
+  mutate(Price = as.numeric(gsub("\\$", "", Price)))
+
+# Select the top 10 games by price
+top_10_expensive_games <- game_dataset %>%
+  arrange(desc(Price)) %>%
+  slice_head(n = 10)
+
+# Plot the bar chart
+ggplot(top_10_expensive_games, aes(x = reorder(Titles, Price), y = Price)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  coord_flip() +
+  labs(title = "Top 10 Game Titles by Price", x = "Game Titles", y = "Price ($)") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+-   **Observation:** The chart shows that the top 10 most expensive games are priced around \$50-\$60, featuring popular and high-quality titles.
+-   **Implication:** Players are willing to pay a premium for well-known, high-value games, suggesting a viable market for premium-priced titles in established franchises.
+
+## 4. Conclusion
+
+-   **Summary:** These observations collectively reveal several key relationships within the dataset, emphasizing the interconnected nature of price,score and audience reviews
+
+-   **Recommendation:** Consider leveraging these insights for buying a new game.
+
+By presenting your observations in a structured and clear manner, you convey the significance of the relationships observed in your project data. This approach helps readers understand the implications and potential trends that can be derived from the analyzed patterns.
+
+In this report we have done a comprehensive analysis of the data of top 250 E games and drew numerous conclusions from it.
+
+## 5. References
+
+For Most of the data: <https://steam250.com/>
