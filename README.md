@@ -2,7 +2,7 @@
 
 **MTH208 – Data Science Lab - I**  
 **Instructor:** Dr. Dootika Vats  
-**Group 7:** Mainak Sarkar, Neelaksha Malik, Tenzin Tsomu, Harsh Deep
+**Group 7:**  Neelaksha Malik, Mainak Sarkar, Tenzin Tsomu, Harsh Deep
 
 ---
 
